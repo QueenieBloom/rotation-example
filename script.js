@@ -75,8 +75,8 @@ function drawRotatedHouse() {
     ctx.rotate(theta);
 
     // Desenhar a imagem da casa (ajustando para centralizar)
-    const imgWidth = 40;
-    const imgHeight = 40;
+    const imgWidth = 50;
+    const imgHeight = 50;
     ctx.drawImage(houseImage, -imgWidth / 2, -imgHeight / 2, imgWidth, imgHeight);
 
     // Restaurar o estado original do contexto

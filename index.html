@@ -12,12 +12,19 @@
     <h2>Rotação 2D de uma Casa</h2>
     <div class="inputs">
         <!-- Inputs para as coordenadas e o ângulo -->
-        <label for="x">Coordenada X (0 a 10):</label>
-        <input type="number" id="x" min="0" max="10" value="5" />
-        <label for="y">Coordenada Y (0 a 10):</label>
-        <input type="number" id="y" min="0" max="10" value="5" />
-        <label for="angle">Ângulo de rotação (graus):</label>
-        <input type="number" id="angle" value="45" />
+         <div class="input">
+            <label for="x">Coordenada X (0 a 10):</label>
+            <input type="number" id="x" min="0" max="10" value="5" />
+         </div>
+         <div class="input">
+            <label for="y">Coordenada Y (0 a 10):</label>
+            <input type="number" id="y" min="0" max="10" value="5" />
+         </div>
+         <div class="input">
+            <label for="angle">Ângulo de rotação (graus):</label>
+            <input type="number" id="angle" value="45" />
+         </div>
+       
         <br />
         <button onclick="rotateImage()">Rotacionar Casa</button>
     </div>
