@@ -1,4 +1,3 @@
-// Variável global para armazenar a imagem
 let houseImage = new Image();
 houseImage.src = 'casa.png'; // Coloque o caminho correto da sua imagem aqui
 
@@ -75,8 +74,8 @@ function drawRotatedHouse() {
     ctx.rotate(theta);
 
     // Desenhar a imagem da casa (ajustando para centralizar)
-    const imgWidth = 50;
-    const imgHeight = 50;
+    const imgWidth = 40;
+    const imgHeight = 40;
     ctx.drawImage(houseImage, -imgWidth / 2, -imgHeight / 2, imgWidth, imgHeight);
 
     // Restaurar o estado original do contexto
@@ -90,30 +89,24 @@ function rotateImage() {
     houseY = parseFloat(document.getElementById('y').value);
     targetAngle = parseFloat(document.getElementById('angle').value); // Alvo de ângulo
 
-    // Reiniciar a animação mesmo se o ângulo for o mesmo
-    houseAngle = 0; // Reseta o ângulo atual
-    isAnimating = true; // Iniciar a animação
-    animateRotation();
+    if (houseX >= 0 && houseY >= 0) {
+        // Reiniciar a animação mesmo se o ângulo for o mesmo
+        houseAngle = 0; // Reseta o ângulo atual
+        isAnimating = true; // Iniciar a animação
+        animateRotation();
+    }
 }
 
 // Função de animação de rotação
 function animateRotation() {
-    if (!isAnimating) return; // Para a animação se isAnimating for false
-
     // Redesenhar o grid
     drawGrid();
 
-    // Calcular a diferença entre o ângulo atual e o ângulo alvo
-    const angleDiff = targetAngle - houseAngle;
+    // Incrementar o ângulo continuamente
+    houseAngle += rotationSpeed;
 
-    // Se a diferença for pequena, parar a animação
-    if (Math.abs(angleDiff) < rotationSpeed) {
-        houseAngle = targetAngle; // Ajustar o ângulo para o alvo
-        isAnimating = false; // Parar a animação
-    } else {
-        // Incrementar ou decrementar o ângulo
-        houseAngle += (angleDiff > 0) ? rotationSpeed : -rotationSpeed; 
-    }
+    // Manter o ângulo entre 0 e 360 graus para evitar números muito grandes
+    houseAngle = houseAngle % 360;
 
     // Desenhar a casa na nova posição
     drawRotatedHouse();
@@ -121,6 +114,7 @@ function animateRotation() {
     // Chamar a função de animação no próximo quadro
     requestAnimationFrame(animateRotation);
 }
+
 
 // Função para desenhar a casa no carregamento inicial
 function init() {
